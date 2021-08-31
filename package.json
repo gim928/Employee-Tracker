@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "express": "^4.17.1",
+    "inquirer": "^8.1.2",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "employee-tracker",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gim928/Employee-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gim928/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/gim928/Employee-Tracker#readme"
+}
