@@ -21,12 +21,15 @@ Role.init(
     department_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "department",
+        model: "departments",
         key: "department_id",
       },
     },
   },
   {
     sequelize,
+    underscored: true,
   }
 );
+
+module.exports = Role;

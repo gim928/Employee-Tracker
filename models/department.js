@@ -19,6 +19,7 @@ Department.init(
   {
     // Link to database connection
     sequelize,
+    underscored: true,
   }
 );
 

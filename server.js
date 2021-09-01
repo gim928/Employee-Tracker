@@ -1,6 +1,10 @@
 const express = require("express");
 const sequelize = require("./config/connection");
-const startProgram = require("./index.js");
+//import models to sync table with database
+const Department = require("./models/Department");
+const Role = require("./models/Role");
+const Employee = require("./models/Employee");
+// const startProgram = require("./index.js");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -9,9 +13,8 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to the database before starting the Express.js server
-sequelize.sync().then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });
 
-startProgram();
+// startProgram();
