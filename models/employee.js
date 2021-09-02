@@ -25,6 +25,13 @@ Employee.init(
         key: "role_id",
       },
     },
+    department_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "departments",
+        key: "department_id",
+      },
+    },
     manager_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -36,6 +43,7 @@ Employee.init(
   {
     sequelize,
     underscored: true,
+    timestamps: false,
   }
 );
 

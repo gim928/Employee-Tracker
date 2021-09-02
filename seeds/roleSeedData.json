@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Salesperson",
+    "salary": 70000
+  },
+  {
+    "title": "Engineer",
+    "salary": 80000
+  },
+  {
+    "title": "Accountant",
+    "salary": 90000
+  },
+  {
+    "title": "Sales Manager",
+    "salary": 200000
+  },
+  {
+    "title": "Lead Engineer",
+    "salary": 100000
+  },
+  {
+    "title": "Accounting Manager",
+    "salary": 130000
+  },
+  {
+    "title": "Lawyer",
+    "salary": 190000
+  },
+  {
+    "title": "Lead Counsel",
+    "salary": 300000
+  }
+]

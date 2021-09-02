@@ -5,6 +5,7 @@ const Department = require("./models/Department");
 const Role = require("./models/Role");
 const Employee = require("./models/Employee");
 const startProgram = require("./index.js");
+const routes = require("./routes");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -12,6 +13,9 @@ const PORT = process.env.PORT || 3001;
 //middleware for parsing JSON and url encoded from data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// turn on routes
+app.use(routes);
 
 sequelize
   .sync({ force: false })
