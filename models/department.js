@@ -7,8 +7,9 @@ class Department extends Model {}
 
 Department.init(
   {
-    department_id: {
+    id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },

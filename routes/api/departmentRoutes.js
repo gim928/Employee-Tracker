@@ -31,4 +31,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//GET all employees
+router.get("/employees", async (req, res) => {
+  try {
+    const employeeData = await Employee.findAll({
+      include: [{ model: Department }, { model: Role }],
+    });
+    res.status(200).json(employeeData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 module.exports = router;

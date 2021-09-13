@@ -5,8 +5,9 @@ const table = require("console.table");
 const Department = require("./models/Department");
 const Employee = require("./models/Employee");
 const Role = require("./models/Role");
-// const { findAll } = require("./models/Department");
+const { afterUpdate } = require("./models/Department");
 
+// sequelize.query(`SET FOREIGN_KEY_CHECKS = 0`);
 async function startProgram() {
   const answers = await inquirer.prompt([
     {
@@ -32,7 +33,7 @@ async function startProgram() {
       const tables = tableData.map((department) =>
         department.get({ plain: true })
       );
-      console.log(tables);
+      // console.log(tables);
       console.table(tables);
     } catch (err) {
       console.log(err);
@@ -82,15 +83,15 @@ async function startProgram() {
       let tables = tableData.map((Department) =>
         Department.get({ plain: true })
       );
-      console.log(tables);
+      // console.log(tables);
       tables = tables.map((each) => {
         return {
           name: each.name,
-          value: each.department_id,
+          value: each.id,
         };
       });
       // console.log(table);
-      console.log(tables);
+      // console.log(tables);
 
       const getRole = await inquirer.prompt([
         {
@@ -120,25 +121,31 @@ async function startProgram() {
   }
 
   if (answers.actionChosen === "Add an employee") {
+    sequelize.query(`SET FOREIGN_KEY_CHECKS = 0`);
     try {
       const tableData = await Role.findAll();
       let tables = tableData.map((Role) => Role.get({ plain: true }));
       // console.log(tables);
       tables = tables.map((each) => {
         return {
-          name: each.name,
-          value: each.role_id,
+          name: each.title,
+          value: each.id,
         };
       });
-      const managerData = await Role.findAll({ title: ["Manager"] });
-      let managers = managerData.map((Role) => Role.get({ plain: true }));
-      console.log(managers);
+      const managerData = await Employee.findAll({
+        where: { manager_id: null },
+      });
+      let managers = managerData.map((Employee) =>
+        Employee.get({ plain: true })
+      );
+      // console.log(managers);
       managers = managers.map((each) => {
         return {
-          name: each.name,
-          value: each.employee_id,
+          name: each.first_name + " " + each.last_name,
+          value: each.id,
         };
       });
+      // console.log(managers);
       const getEmployee = await inquirer.prompt([
         {
           type: "input",
@@ -156,41 +163,76 @@ async function startProgram() {
           type: "list",
           message: "What is the employee's role?",
           choices: tables,
-          name: "role",
+          name: "role_id",
         },
         {
           type: "list",
           message: "Who is the employee's manager?",
           choices: managers,
-          name: "employee_id",
+          name: "manager_id",
         },
       ]);
-      const insertEmployee = await Role.create(getEmployee);
+      console.log(getEmployee);
+      const insertEmployee = await Employee.create(getEmployee);
     } catch (err) {
       console.log(err);
     }
     startProgram();
   }
   if (answers.actionChosen === "Update an employee role") {
-    const updateEmployee = await inquirer.prompt([
-      {
-        type: "list",
-        message: "Which employee's role would you like to update?",
-        choices: [],
-        name: "employeeUpdate",
-      },
-      {
-        type: "list",
-        message: "What role would you like to assign the employee?",
-        choices: [],
-        name: "updatedRole",
-      },
+    try {
+      const tableData = await Employee.findAll();
+      let tables = tableData.map((Employee) => Employee.get({ plain: true }));
+      // console.log(tables);
+      tables = tables.map((each) => {
+        return {
+          name: each.first_name + " " + each.last_name,
+          value: each.id,
+        };
+      });
 
-      //model.update?
-    ]);
+      const roleData = await Role.findAll();
+      let roles = roleData.map((Role) => Role.get({ plain: true }));
+      // console.log(roles);
+      roles = roles.map((each) => {
+        return {
+          name: each.title,
+          value: each.id,
+        };
+      });
+      const updateEmployee = await inquirer.prompt([
+        {
+          type: "list",
+          message: "Which employee's role would you like to update?",
+          choices: tables,
+          name: "employeeUpdate",
+        },
+
+        {
+          type: "list",
+          message: "What role would you like to assign the employee?",
+          choices: roles,
+          name: "updatedRole",
+        },
+      ]);
+      console.log(updateEmployee);
+      const update = await Employee.update(
+        {
+          role_id: updateEmployee.updatedRole,
+        },
+        {
+          where: {
+            id: updateEmployee.employeeUpdate,
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+    startProgram();
   }
   if (answers.actionChosen === "EXIT PROGRAM") {
-    return;
+    process.exit(0);
   }
 }
 

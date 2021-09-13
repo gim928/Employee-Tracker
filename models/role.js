@@ -7,10 +7,11 @@ class Role extends Model {}
 
 Role.init(
   {
-    role_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      allowNull: false,
     },
     title: {
       type: DataTypes.STRING,
@@ -22,7 +23,7 @@ Role.init(
       type: DataTypes.INTEGER,
       references: {
         model: "departments",
-        key: "department_id",
+        key: "id",
       },
     },
   },

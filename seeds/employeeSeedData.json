@@ -1,34 +1,48 @@
 [
   {
     "first_name": "Bob",
-    "last_name": "Wilson"
+    "last_name": "Wilson",
+    "role_id": 1,
+    "manager_id": 4
   },
   {
     "first_name": "Susan",
-    "last_name": "Wilson"
+    "last_name": "Wilson",
+    "role_id": 2,
+    "manager_id": 4
   },
   {
     "first_name": "Mike",
-    "last_name": "Smith"
+    "last_name": "Smith",
+    "role_id": 3,
+    "manager_id": 6
   },
   {
     "first_name": "Lauren",
-    "last_name": "Winnen"
+    "last_name": "Winnen",
+    "role_id": 4
   },
   {
     "first_name": "Audrey",
-    "last_name": "Carlson"
+    "last_name": "Carlson",
+    "role_id": 5,
+    "department_id": 2
   },
   {
     "first_name": "Brian",
-    "last_name": "Wilkinson"
+    "last_name": "Wilkinson",
+    "role_id": 6
   },
   {
     "first_name": "Morgan",
-    "last_name": "Miller"
+    "last_name": "Miller",
+    "role_id": 7,
+
+    "manager_id": 8
   },
   {
     "first_name": "Mallory",
-    "last_name": "Hutchinson"
+    "last_name": "Hutchinson",
+    "role_id": 8
   }
 ]

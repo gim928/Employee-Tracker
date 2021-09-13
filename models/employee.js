@@ -7,10 +7,11 @@ class Employee extends Model {}
 
 Employee.init(
   {
-    employee_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      allowNull: false,
     },
     first_name: {
       type: DataTypes.STRING,
@@ -22,21 +23,22 @@ Employee.init(
       type: DataTypes.INTEGER,
       references: {
         model: "roles",
-        key: "role_id",
+        key: "id",
       },
     },
-    department_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "departments",
-        key: "department_id",
-      },
-    },
+    // department_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: "departments",
+    //     key: "id",
+    //   },
+    // },
     manager_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,
       references: {
         model: "employees",
-        key: "employee_id",
+        key: "id",
       },
     },
   },
