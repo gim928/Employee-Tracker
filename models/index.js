@@ -11,11 +11,11 @@ const Role = require("./Role");
 // });
 
 Department.hasMany(Role, {
-  foreignKey: "id",
+  foreignKey: "department_id",
 });
 
 Role.belongsTo(Department, {
-  foreignKey: "id",
+  foreignKey: "department_id",
 });
 
 Role.hasMany(Employee, {
