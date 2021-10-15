@@ -8,7 +8,7 @@
 
 ## Description
 
-This application allows non-developers to easily view and interact weth information stored in a database to manage and track their employees. This application runs from the terminal and helps the user manage a company's employee database using Node.js, Inquirer, Express.js, MySQL2, and sequelize. It allows the user to manage the departments, roles, and employees in their company.
+This application allows non-developers to easily view and interact with information stored in a database to manage and track their employees. This application runs from the terminal and helps the user manage a company's employee database using Node.js, Inquirer, Express.js, MySQL2, and sequelize. It allows the user to manage the departments, roles, and employees in their company.
 
 ## Table of Contents
 
